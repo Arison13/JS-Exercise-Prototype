@@ -32,22 +32,41 @@ Airplane.prototype.land = function () {
     - All instances of Person should initialize with an empty `stomach` array.
     - Give instances of Person the ability to `.eat("someFood")`:
         + When eating an edible, it should be pushed into the `stomach`.
-        + The `eat` method should have no effect if there are 10 items in the `stomach`.
+        + The `eat` method should have no effect if there are 10 items in the `stomach`. 
     - Give instances of Person the ability to `.poop()`:
         + When an instance poops, its `stomach` should empty.
     - Give instances of Person a method `.toString()`:
         + It should return a string with `name` and `age`. Example: "Mary, 50"
 */
 
-function Person() {
-  
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+  this.stomach = [];
+}
+Person.prototype.eat = function(edible){
+  if(this.stomach.length < 10){
+    this.stomach.push(edible);
+  }
+}
+Person.prototype.poop = function(){
+  this.stomach = [];
+}
+Person.prototype.toString = function (){
+  return `${this.name}, ${this.age}`;
 }
 
+const kevin = new Person ('Kevin', 26);
 
+kevin.eat('pizza');
+kevin.eat('wing');
+kevin.eat('rice');
+kevin.eat('icecream');
+kevin.eat('pizza');
+console.log(kevin.stomach);
 
-
-
-
+console.log(kevin.poop);
+console.log(kevin.toString());
 
 /*
   TASK 2
@@ -63,10 +82,15 @@ function Person() {
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
 
-function Car() {
-  
+function Car(model, milesPerGallon) {
+  this.model = model;
+  this.milesPerGallon = milesPerGallon;
+  this.tank = 0;
+  this.odometer = 0;
 }
-
+Car.prototype.fill = function(gallons){
+this.tank += gallons;
+}
 
 /*
   TASK 3
@@ -75,10 +99,12 @@ function Car() {
     - Besides the methods on Person.prototype, babies have the ability to `.play()`:
         + Should return a string "Playing with x", x being the favorite toy.
 */
-function Baby() {
- 
+function Baby(name, age, favoriteToy) {
+ this.name = name;
+ this.age = age;
+ this.favoriteToy = favoriteToy;
 }
-
+Baby.prototype
 
 /* 
   TASK 4
